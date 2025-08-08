@@ -21,7 +21,7 @@ Option B — Import via Local Clone
 
 ## Configure
 
-Enter values for the following Variables in Postman Environment (Environment-only model):
+Enter values for the following Variables in Postman Environment:
 
 - BASE_URL: app.terraform.io (no protocol) or your TFE hostname
 - API_TOKEN: your user/team/org token
@@ -38,6 +38,8 @@ Enter values for the following Variables in Postman Environment (Environment-onl
 - CONFIG_VERSION_ID, RUN_ID, PLAN_ID, APPLY_ID, STATE_VERSION_ID
 
 Notes:
+- Make sure to update the 'Current value' field when supplying values for Postman Environment Variables
+- Make sure to save the Environment after updating Variable values (Save Button or Cmd/Ctrl-S)
 - The collection explicitly uses https://{{BASE_URL}} in request URLs. Keep BASE_URL as a hostname only.
 - Pre-signed uploads use {{UPLOAD_URL}} and remain fully qualified; do not prefix with BASE_URL.
 
