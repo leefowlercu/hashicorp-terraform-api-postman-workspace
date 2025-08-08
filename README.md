@@ -1,15 +1,23 @@
 # HCP Terraform / Terraform Enterprise API Postman Workspace
 
-This repo now provides a modular set of Postman collections grouped by API metaphors (matching the official docs), plus a shared environment. All collections use Environment variables only; there are no collection-level variables.
+This repo provides a modular set of Postman collections grouped by API metaphors (matching the official docs), plus a shared environment. All collections use Environment variables only; there are no collection-level variables.
 
 ## Import
 
-Option A — import the folder (recommended):
-1. In Postman, click Import.
+Pre-requisite: Create a new Postman Workspace and make sure it is selected.
+
+Option A — Import via Postman GitHub Integration (recommended):
+1. Fork this repository to your own GitHub account/organization.
+2. In Postman, open Integrations and install GitHub. Authorize the Postman GitHub OAuth app to access your fork.
+3. In Postman, click Import → Code Repository → GitHub. Select your account/org, choose your forked repo and the branch (e.g., main/master).
+4. Select which Collections you'd like to import (everything is selected by default).
+5. Complete the import, then select Environments -> Terraform and customize the Variable values for your HCP TF / TFE Tenant.
+
+Option B — Import via Local Clone
+1. Clone this repository locally
+2. In Postman, click Import.
 2. Drag-and-drop the `postman/collections/` folder and `postman/environments/terraform.postman_environment.json`.
 3. Select the `Terraform` environment after import.
-
-Option B — import individual collections: Import one or more JSON files from `postman/collections/` alongside the shared environment.
 
 ## Configure
 
