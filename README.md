@@ -40,6 +40,7 @@ Enter values for the following Variables in Postman Environment:
 Notes:
 - Make sure to update the 'Current value' field when supplying values for Postman Environment Variables
 - Make sure to save the Environment after updating Variable values (Save Button or Cmd/Ctrl-S)
+- When selecting a Collection or a Request inside a collection make sure the Environment is selected so that Variable values are populated in placeholder stanzas
 - The collection explicitly uses https://{{BASE_URL}} in request URLs. Keep BASE_URL as a hostname only.
 - Pre-signed uploads use {{UPLOAD_URL}} and remain fully qualified; do not prefix with BASE_URL.
 
