@@ -1,11 +1,6 @@
 {
   "info": {"name": "HCP Terraform - OAuth Clients", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "OAuth Clients API endpoints"},
-  "variable": [
-    {"key":"BASE_URL","value":"{{BASE_URL}}"},
-    {"key":"ORG_NAME","value":"{{ORG_NAME}}"},
-  {"key":"OAUTH_CLIENT_ID","value":"{{OAUTH_CLIENT_ID}}"},
-  {"key":"PROJECT_ID","value":"{{PROJECT_ID}}"}
-  ],
+  
   "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
   "item": [
     {"name":"List OAuth Clients","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/oauth-clients","host":["{{BASE_URL}}"],"path":["api","v2","organizations","{{ORG_NAME}}","oauth-clients"]}}},

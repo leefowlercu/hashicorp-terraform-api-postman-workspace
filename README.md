@@ -1,6 +1,6 @@
 # HCP Terraform / Terraform Enterprise API Postman Workspace
 
-This repo now provides a modular set of Postman collections grouped by API metaphors (matching the official docs), plus a shared environment.
+This repo now provides a modular set of Postman collections grouped by API metaphors (matching the official docs), plus a shared environment. All collections use Environment variables only; there are no collection-level variables.
 
 ## Import
 
@@ -13,7 +13,7 @@ Option B — import individual collections: Import one or more JSON files from `
 
 ## Configure
 
-Enter values for the following Variables in Postman Environment:
+Enter values for the following Variables in Postman Environment (Environment-only model):
 
 - BASE_URL: app.terraform.io (no protocol) or your TFE hostname
 - API_TOKEN: your user/team/org token

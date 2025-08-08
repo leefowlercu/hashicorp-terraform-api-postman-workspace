@@ -1,12 +1,6 @@
 {
   "info": {"name": "HCP Terraform - Teams", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Teams, Team Access, Team Tokens"},
-  "variable": [
-    {"key":"BASE_URL","value":"{{BASE_URL}}"},
-    {"key":"ORG_NAME","value":"{{ORG_NAME}}"},
-    {"key":"TEAM_ID","value":"{{TEAM_ID}}"},
-    {"key":"TEAM_WORKSPACE_ID","value":"{{TEAM_WORKSPACE_ID}}"},
-    {"key":"TOKEN_ID","value":"{{TOKEN_ID}}"}
-  ],
+  
   "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
   "item": [
     {"name":"Teams","item":[

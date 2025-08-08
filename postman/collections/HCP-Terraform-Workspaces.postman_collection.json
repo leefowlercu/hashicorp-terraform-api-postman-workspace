@@ -4,16 +4,7 @@
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": "Workspaces, variables, team access, and resources"
   },
-  "variable": [
-    { "key": "BASE_URL", "value": "{{BASE_URL}}" },
-    { "key": "ORG_NAME", "value": "{{ORG_NAME}}" },
-    { "key": "WORKSPACE_ID", "value": "{{WORKSPACE_ID}}" },
-    { "key": "WORKSPACE_NAME", "value": "{{WORKSPACE_NAME}}" },
-    { "key": "PROJECT_ID", "value": "{{PROJECT_ID}}" },
-    { "key": "TEAM_ID", "value": "{{TEAM_ID}}" },
-    { "key": "TEAM_WORKSPACE_ID", "value": "{{TEAM_WORKSPACE_ID}}" },
-    { "key": "SSH_KEY_ID", "value": "{{SSH_KEY_ID}}" }
-  ],
+  
   "auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{API_TOKEN}}", "type": "string" } ] },
   "item": [
     {

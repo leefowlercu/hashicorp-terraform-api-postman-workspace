@@ -1,11 +1,6 @@
 {
   "info": {"name": "HCP Terraform - Policy Sets", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Policy Sets API endpoints and upload flow"},
-  "variable": [
-    {"key":"BASE_URL","value":"{{BASE_URL}}"},
-    {"key":"ORG_NAME","value":"{{ORG_NAME}}"},
-    {"key":"POLICY_SET_ID","value":"{{POLICY_SET_ID}}"},
-    {"key":"UPLOAD_URL","value":"{{UPLOAD_URL}}"}
-  ],
+  
   "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
   "item": [
     {"name":"List Policy Sets","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/policy-sets","host":["{{BASE_URL}}"],"path":["api","v2","organizations","{{ORG_NAME}}","policy-sets"]}}},

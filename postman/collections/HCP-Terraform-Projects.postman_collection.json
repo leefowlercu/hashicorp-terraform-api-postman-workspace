@@ -1,11 +1,6 @@
 {
   "info": {"name": "HCP Terraform - Projects", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Projects API endpoints"},
-  "variable": [
-    {"key":"BASE_URL","value":"{{BASE_URL}}"},
-    {"key":"ORG_NAME","value":"{{ORG_NAME}}"},
-    {"key":"PROJECT_ID","value":"{{PROJECT_ID}}"},
-    {"key":"WORKSPACE_ID","value":"{{WORKSPACE_ID}}"}
-  ],
+  
   "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
   "item": [
     {"name":"List Projects","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/projects?page[number]=1&page[size]=20","host":["{{BASE_URL}}"],"path":["api","v2","organizations","{{ORG_NAME}}","projects"],"query":[{"key":"page[number]","value":"1"},{"key":"page[size]","value":"20"}]}}},

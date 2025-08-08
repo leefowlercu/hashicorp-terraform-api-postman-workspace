@@ -4,10 +4,6 @@
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": "Organizations API endpoints"
   },
-  "variable": [
-    { "key": "BASE_URL", "value": "{{BASE_URL}}" },
-    { "key": "ORG_NAME", "value": "{{ORG_NAME}}" }
-  ],
   "auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{API_TOKEN}}", "type": "string" } ] },
   "item": [
     { "name": "List Organizations", "request": { "method": "GET", "url": { "raw": "https://{{BASE_URL}}/api/v2/organizations?page[number]=1&page[size]=20", "host": ["{{BASE_URL}}"], "path": ["api","v2","organizations"], "query": [{"key":"page[number]","value":"1"},{"key":"page[size]","value":"20"}] } } },

@@ -1,13 +1,6 @@
 {
   "info": {"name": "HCP Terraform - Runs, Plans, Applies", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Operations: Runs, Plans, Applies"},
-  "variable": [
-    {"key":"BASE_URL","value":"{{BASE_URL}}"},
-    {"key":"ORG_NAME","value":"{{ORG_NAME}}"},
-    {"key":"WORKSPACE_ID","value":"{{WORKSPACE_ID}}"},
-    {"key":"RUN_ID","value":"{{RUN_ID}}"},
-    {"key":"PLAN_ID","value":"{{PLAN_ID}}"},
-    {"key":"APPLY_ID","value":"{{APPLY_ID}}"}
-  ],
+    
   "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
   "item": [
     {"name":"Runs","item":[
