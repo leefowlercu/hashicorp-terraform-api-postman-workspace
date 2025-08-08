@@ -2,8 +2,8 @@
   "info": {"name": "Agents Collection", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Agent Pools and Agents API endpoints"},
   "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
   "item": [
-    {"name":"List Agent Pools","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/agent-pools","host":["{{BASE_URL}}"],"path":["api","v2","organizations","{{ORG_NAME}}","agent-pools"]}}},
-    {"name":"Show Agent Pool","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/agent-pools/{{AGENT_POOL_ID}}","host":["{{BASE_URL}}"],"path":["api","v2","agent-pools","{{AGENT_POOL_ID}}"]}}},
-    {"name":"List Agents in Pool","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/agent-pools/{{AGENT_POOL_ID}}/agents","host":["{{BASE_URL}}"],"path":["api","v2","agent-pools","{{AGENT_POOL_ID}}","agents"]}}}
+    {"name":"List Agent Pools","request":{"method":"GET","description":"List agent pools for an organization.","url":{"raw":"https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/agent-pools","host":["{{BASE_URL}}"],"path":["api","v2","organizations","{{ORG_NAME}}","agent-pools"]}}},
+    {"name":"Show Agent Pool","request":{"method":"GET","description":"Get details for an agent pool by ID.","url":{"raw":"https://{{BASE_URL}}/api/v2/agent-pools/{{AGENT_POOL_ID}}","host":["{{BASE_URL}}"],"path":["api","v2","agent-pools","{{AGENT_POOL_ID}}"]}}},
+    {"name":"List Agents in Pool","request":{"method":"GET","description":"List agents registered to a specific pool.","url":{"raw":"https://{{BASE_URL}}/api/v2/agent-pools/{{AGENT_POOL_ID}}/agents","host":["{{BASE_URL}}"],"path":["api","v2","agent-pools","{{AGENT_POOL_ID}}","agents"]}}}
   ]
 }
