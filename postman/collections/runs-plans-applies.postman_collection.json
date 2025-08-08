@@ -1,5 +1,5 @@
 {
-  "info": {"name": "HCP Terraform - Runs, Plans, Applies", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Operations: Runs, Plans, Applies"},
+  "info": {"name": "Runs, Plans, Applies Collection", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Operations: Runs, Plans, Applies"},
     
   "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
   "item": [

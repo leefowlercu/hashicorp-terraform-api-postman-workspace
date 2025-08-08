@@ -1,5 +1,5 @@
 {
-  "info": {"name": "HCP Terraform - Projects", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Projects API endpoints"},
+  "info": {"name": "Projects Collection", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Projects API endpoints"},
   
   "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
   "item": [

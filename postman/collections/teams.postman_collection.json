@@ -1,5 +1,5 @@
 {
-  "info": {"name": "HCP Terraform - Teams", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Teams, Team Access, Team Tokens"},
+  "info": {"name": "Teams Collection", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Teams, Team Access, Team Tokens"},
   
   "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
   "item": [

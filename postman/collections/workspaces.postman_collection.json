@@ -1,6 +1,6 @@
 {
   "info": {
-    "name": "HCP Terraform - Workspaces",
+  "name": "Workspaces Collection",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": "Workspaces, variables, team access, and resources"
   },
@@ -29,7 +29,7 @@
       "name": "Data Retention Policy (TFE)",
       "item": [
         { "name": "Show Workspace Data Retention Policy", "request": { "method": "GET", "url": { "raw": "https://{{BASE_URL}}/api/v2/workspaces/{{WORKSPACE_ID}}/relationships/data-retention-policy", "host": ["{{BASE_URL}}"], "path": ["api","v2","workspaces","{{WORKSPACE_ID}}","relationships","data-retention-policy"] } } },
-        { "name": "Create/Update Workspace Data Retention Policy", "request": { "method": "POST", "header": [ { "key": "Content-Type", "value": "application/vnd.api+json" } ], "body": { "mode": "raw", "raw": "{\n  \"data\": {\n    \"type\": \"data-retention-policy-delete-olders\",\n    \"attributes\": {\n      \"deleteOlderThanNDays\": 33\n    }\n  }\n}\n" }, "url": { "raw": "https://{{BASE_URL}}/api/v2/workspaces/{{WORKSPACE_ID}}/relationships/data-retention-policy", "host": ["{{BASE_URL}}"], "path": ["api","v2","workspaces","{{WORKSPACE_ID}}","relationships","data-retention-policy"] } } },
+        { "name": "Create/Update Workspace Data Retention Policy", "request": { "method": "POST", "header": [ { "key": "Content-Type", "value": "application/vnd.api+json" } ], "body": { "mode": "raw", "raw": "{\n  \"data\": {\n    \"type\": \"data-retention-policy-delete-olders\",\n      \"attributes\": {\n      \"deleteOlderThanNDays\": 33\n    }\n  }\n}\n" }, "url": { "raw": "https://{{BASE_URL}}/api/v2/workspaces/{{WORKSPACE_ID}}/relationships/data-retention-policy", "host": ["{{BASE_URL}}"], "path": ["api","v2","workspaces","{{WORKSPACE_ID}}","relationships","data-retention-policy"] } } },
         { "name": "Remove Workspace Data Retention Policy", "request": { "method": "DELETE", "url": { "raw": "https://{{BASE_URL}}/api/v2/workspaces/{{WORKSPACE_ID}}/relationships/data-retention-policy", "host": ["{{BASE_URL}}"], "path": ["api","v2","workspaces","{{WORKSPACE_ID}}","relationships","data-retention-policy"] } } }
       ]
     },

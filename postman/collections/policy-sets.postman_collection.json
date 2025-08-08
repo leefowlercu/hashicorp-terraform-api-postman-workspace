@@ -1,5 +1,5 @@
 {
-  "info": {"name": "HCP Terraform - Policy Sets", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Policy Sets API endpoints and upload flow"},
+  "info": {"name": "Policy Sets Collection", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Policy Sets API endpoints and upload flow"},
   
   "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
   "item": [

@@ -1,5 +1,5 @@
 {
-  "info": {"name": "HCP Terraform - OAuth Clients", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "OAuth Clients API endpoints"},
+  "info": {"name": "OAuth Clients Collection", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "OAuth Clients API endpoints"},
   
   "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
   "item": [

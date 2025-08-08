@@ -1,5 +1,5 @@
 {
-  "info": {"name": "HCP Terraform - Users", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Users API endpoints"},
+  "info": {"name": "Users Collection", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Users API endpoints"},
   
   "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
   "item": [

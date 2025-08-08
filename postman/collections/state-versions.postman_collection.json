@@ -1,5 +1,5 @@
 {
-  "info": {"name": "HCP Terraform - State Versions", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "State Versions endpoints and Archivist upload"},
+  "info": {"name": "State Versions Collection", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "State Versions endpoints and Archivist upload"},
   
   
   "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},

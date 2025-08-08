@@ -6,8 +6,8 @@ This repo now provides a modular set of Postman collections grouped by API metap
 
 Option A — import the folder (recommended):
 1. In Postman, click Import.
-2. Drag-and-drop the `postman/collections/` folder and `postman/environments/hcp-terraform.postman_environment.json`.
-3. Select the `hcp-terraform` environment after import.
+2. Drag-and-drop the `postman/collections/` folder and `postman/environments/terraform.postman_environment.json`.
+3. Select the `Terraform` environment after import.
 
 Option B — import individual collections: Import one or more JSON files from `postman/collections/` alongside the shared environment.
 
@@ -41,51 +41,49 @@ Notes:
 
 The collections mirror the Terraform Cloud API documentation structure: https://developer.hashicorp.com/terraform/cloud-docs/api-docs
 
-- HCP Terraform - Organizations (`postman/collections/HCP-Terraform-Organizations.postman_collection.json`)
-	- Organizations and Entitlement Set; Terraform Enterprise-only: Data Retention Policy (show/create/update/delete) and Module Producers
-
-- HCP Terraform - Teams (`postman/collections/HCP-Terraform-Teams.postman_collection.json`)
-	- Teams, Team Tokens (modern + legacy); Team Memberships (add/remove users and org-memberships)
-
-- HCP Terraform - Projects (`postman/collections/HCP-Terraform-Projects.postman_collection.json`)
-	- Projects, Tag Bindings, Effective Tag Bindings, Move Workspaces
-
-- HCP Terraform - Workspaces (`postman/collections/HCP-Terraform-Workspaces.postman_collection.json`)
-	- Folders: Workspaces; Workspace Variables; Workspace Team Access; Workspace Resources (SSH key, tags, remote state consumers); Terraform Enterprise-only: Workspace Data Retention Policy (show/create/update/delete)
-
-- HCP Terraform - OAuth Clients (`postman/collections/HCP-Terraform-OAuth-Clients.postman_collection.json`)
-	- OAuth Clients CRUD; attach/detach Projects; list OAuth Tokens by Client
-
-- HCP Terraform - OAuth Tokens (`postman/collections/HCP-Terraform-OAuth-Tokens.postman_collection.json`)
-	- List (by client), Show, Update (SSH key), Delete
-
-- HCP Terraform - Users (`postman/collections/HCP-Terraform-Users.postman_collection.json`)
-	- Show User
-
-- HCP Terraform - Agents (`postman/collections/HCP-Terraform-Agents.postman_collection.json`)
+- Agents Collection (`postman/collections/agents.postman_collection.json`)
 	- Agent Pools, Agents in Pool
 
-- HCP Terraform - Policy Sets (`postman/collections/HCP-Terraform-Policy-Sets.postman_collection.json`)
-	- Create/Show/List; Create Version → Upload to Archivist
-
-- HCP Terraform - Private Registry (`postman/collections/HCP-Terraform-Private-Registry.postman_collection.json`)
-	- Modules (list/create/show); Create Version → Upload to Archivist
-
-- HCP Terraform - Variable Sets (`postman/collections/HCP-Terraform-Variable-Sets.postman_collection.json`)
-	- Org/Project/Workspace lists; create/show/update/delete; manage vars/workspaces/projects
-
-- HCP Terraform - Configuration Versions (`postman/collections/HCP-Terraform-Configuration-Versions.postman_collection.json`)
+- Configuration Versions Collection (`postman/collections/configuration-versions.postman_collection.json`)
 	- List/Show/Create (upload URL) → Upload to Archivist; archive/download; TFE GC actions
 
-- HCP Terraform - Runs, Plans, Applies (`postman/collections/HCP-Terraform-Runs-Plans-Applies.postman_collection.json`)
+- OAuth Clients Collection (`postman/collections/oauth-clients.postman_collection.json`)
+	- OAuth Clients CRUD; attach/detach Projects; list OAuth Tokens by Client
+
+- OAuth Tokens Collection (`postman/collections/oauth-tokens.postman_collection.json`)
+	- List (by client), Show, Update (SSH key), Delete
+
+- Organizations Collection (`postman/collections/organizations.postman_collection.json`)
+	- Organizations and Entitlement Set; Terraform Enterprise-only: Data Retention Policy (show/create/update/delete) and Module Producers
+
+- Policy Sets Collection (`postman/collections/policy-sets.postman_collection.json`)
+	- Create/Show/List; Create Version → Upload to Archivist
+
+- Private Registry Collection (`postman/collections/private-registry.postman_collection.json`)
+	- Modules (list/create/show); Create Version → Upload to Archivist
+
+- Projects Collection (`postman/collections/projects.postman_collection.json`)
+	- Projects, Tag Bindings, Effective Tag Bindings, Move Workspaces
+
+- Runs, Plans, Applies Collection (`postman/collections/runs-plans-applies.postman_collection.json`)
 	- Runs (create/list/show; actions: apply/discard/cancel/force-cancel/force-execute)
 	- Plans (show; JSON output; sanitized plan)
 	- Applies (show; errored-state redirect)
 
-- HCP Terraform - State Versions (`postman/collections/HCP-Terraform-State-Versions.postman_collection.json`)
+- State Versions Collection (`postman/collections/state-versions.postman_collection.json`)
 	- List/filter/show/current/create/upload/rollback; TFE GC actions
 
-Legacy (all-in-one): If present, `postman/collections/HCP-Terraform-API.postman_collection.json` remains for convenience; prefer the modular collections above.
+- Teams Collection (`postman/collections/teams.postman_collection.json`)
+	- Teams, Team Tokens (modern + legacy); Team Memberships (add/remove users and org-memberships)
+
+- Users Collection (`postman/collections/users.postman_collection.json`)
+	- Show User
+
+- Variable Sets Collection (`postman/collections/variable-sets.postman_collection.json`)
+	- Org/Project/Workspace lists; create/show/update/delete; manage vars/workspaces/projects
+
+- Workspaces Collection (`postman/collections/workspaces.postman_collection.json`)
+	- Folders: Workspaces; Workspace Variables; Workspace Team Access; Workspace Resources (SSH key, tags, remote state consumers); Terraform Enterprise-only: Workspace Data Retention Policy (show/create/update/delete)
 
 ### Common Flows
 

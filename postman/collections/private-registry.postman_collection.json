@@ -1,5 +1,5 @@
 {
-  "info": {"name": "HCP Terraform - Private Registry", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Private Registry Modules API endpoints and upload flow"},
+  "info": {"name": "Private Registry Collection", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Private Registry Modules API endpoints and upload flow"},
   
   "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
   "item": [

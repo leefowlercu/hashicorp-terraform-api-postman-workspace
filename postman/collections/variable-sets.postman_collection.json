@@ -1,5 +1,5 @@
 {
-  "info": {"name": "HCP Terraform - Variable Sets", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Variable Sets API endpoints"},
+  "info": {"name": "Variable Sets Collection", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Variable Sets API endpoints"},
   
   "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
   "item": [

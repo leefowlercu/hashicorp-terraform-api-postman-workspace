@@ -1,5 +1,5 @@
 {
-  "info": {"name": "HCP Terraform - OAuth Tokens", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "OAuth Tokens API endpoints"},
+  "info": {"name": "OAuth Tokens Collection", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "OAuth Tokens API endpoints"},
   "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
   "item": [
     {"name":"List OAuth Tokens (by Client)","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/oauth-clients/{{OAUTH_CLIENT_ID}}/oauth-tokens?page[number]=1&page[size]=20","host":["{{BASE_URL}}"],"path":["api","v2","oauth-clients","{{OAUTH_CLIENT_ID}}","oauth-tokens"],"query":[{"key":"page[number]","value":"1"},{"key":"page[size]","value":"20"}]}}},
