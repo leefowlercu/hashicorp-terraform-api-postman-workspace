@@ -1,0 +1,17 @@
+{
+  "info": {"name": "HCP Terraform - Policy Sets", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Policy Sets API endpoints and upload flow"},
+  "variable": [
+    {"key":"BASE_URL","value":"{{BASE_URL}}"},
+    {"key":"ORG_NAME","value":"{{ORG_NAME}}"},
+    {"key":"POLICY_SET_ID","value":"{{POLICY_SET_ID}}"},
+    {"key":"UPLOAD_URL","value":"{{UPLOAD_URL}}"}
+  ],
+  "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
+  "item": [
+    {"name":"List Policy Sets","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/policy-sets","host":["{{BASE_URL}}"],"path":["api","v2","organizations","{{ORG_NAME}}","policy-sets"]}}},
+    {"name":"Show Policy Set","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/policy-sets/{{POLICY_SET_ID}}?include=current_version","host":["{{BASE_URL}}"],"path":["api","v2","policy-sets","{{POLICY_SET_ID}}"],"query":[{"key":"include","value":"current_version"}]}}},
+    {"name":"Create Policy Set","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/vnd.api+json"}],"body":{"mode":"raw","raw":"{\n  \"data\": {\n    \"type\": \"policy-sets\",\n    \"attributes\": {\n      \"name\": \"example\",\n      \"kind\": \"sentinel\",\n      \"global\": false\n    }\n  }\n}"},"url":{"raw":"https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/policy-sets","host":["{{BASE_URL}}"],"path":["api","v2","organizations","{{ORG_NAME}}","policy-sets"]}}},
+    {"name":"Create Policy Set Version (get upload URL)","request":{"method":"POST","url":{"raw":"https://{{BASE_URL}}/api/v2/policy-sets/{{POLICY_SET_ID}}/versions","host":["{{BASE_URL}}"],"path":["api","v2","policy-sets","{{POLICY_SET_ID}}","versions"]}}},
+    {"name":"Upload Policy Set Tarball to Archivist","request":{"method":"PUT","header":[{"key":"Content-Type","value":"application/octet-stream"}],"body":{"mode":"file","file":{"src":"policy-set.tar.gz"}},"url":{"raw":"{{UPLOAD_URL}}","host":["{{UPLOAD_URL}}"]}}}
+  ]
+}

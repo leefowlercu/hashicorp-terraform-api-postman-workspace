@@ -1,0 +1,23 @@
+{
+  "info": {"name": "HCP Terraform - State Versions", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "State Versions endpoints and Archivist upload"},
+  "variable": [
+    {"key":"BASE_URL","value":"{{BASE_URL}}"},
+    {"key":"ORG_NAME","value":"{{ORG_NAME}}"},
+    {"key":"WORKSPACE_ID","value":"{{WORKSPACE_ID}}"},
+    {"key":"WORKSPACE_NAME","value":"{{WORKSPACE_NAME}}"},
+    {"key":"STATE_VERSION_ID","value":"{{STATE_VERSION_ID}}"},
+    {"key":"UPLOAD_URL","value":"{{UPLOAD_URL}}"}
+  ],
+  "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
+  "item": [
+    {"name":"List State Versions (Workspace)","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/state-versions?filter%5Bworkspace%5D%5Bname%5D={{WORKSPACE_NAME}}&filter%5Borganization%5D%5Bname%5D={{ORG_NAME}}","host":["{{BASE_URL}}"],"path":["api","v2","state-versions"],"query":[{"key":"filter[workspace][name]","value":"{{WORKSPACE_NAME}}"},{"key":"filter[organization][name]","value":"{{ORG_NAME}}"}]}}},
+    {"name":"Fetch Current State Version (Workspace)","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/workspaces/{{WORKSPACE_ID}}/current-state-version","host":["{{BASE_URL}}"],"path":["api","v2","workspaces","{{WORKSPACE_ID}}","current-state-version"]}}},
+    {"name":"Show State Version","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/state-versions/{{STATE_VERSION_ID}}","host":["{{BASE_URL}}"],"path":["api","v2","state-versions","{{STATE_VERSION_ID}}"]}}},
+    {"name":"Create State Version (optionally upload)","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/vnd.api+json"}],"body":{"mode":"raw","raw":"{\n  \"data\": {\n    \"type\": \"state-versions\",\n    \"attributes\": {\n      \"serial\": 1,\n      \"md5\": \"d41d8cd98f00b204e9800998ecf8427e\"\n    }\n  }\n}\n"},"url":{"raw":"https://{{BASE_URL}}/api/v2/workspaces/{{WORKSPACE_ID}}/state-versions","host":["{{BASE_URL}}"],"path":["api","v2","workspaces","{{WORKSPACE_ID}}","state-versions"]}}},
+    {"name":"Upload State/JSON to Archivist","request":{"method":"PUT","header":[{"key":"Content-Type","value":"application/octet-stream"}],"body":{"mode":"file","file":{"src":"terraform.tfstate"}},"url":{"raw":"{{UPLOAD_URL}}","host":["{{UPLOAD_URL}}"]}}},
+    {"name":"Rollback to Previous State Version","request":{"method":"PATCH","header":[{"key":"Content-Type","value":"application/vnd.api+json"}],"body":{"mode":"raw","raw":"{\n  \"data\": {\n    \"type\": \"state-versions\",\n    \"relationships\": {\n      \"rollback-state-version\": {\n        \"data\": { \n          \"type\": \"state-versions\", \n          \"id\": \"{{STATE_VERSION_ID}}\" \n        }\n      }\n    }\n  }\n}\n"},"url":{"raw":"https://{{BASE_URL}}/api/v2/workspaces/{{WORKSPACE_ID}}/state-versions","host":["{{BASE_URL}}"],"path":["api","v2","workspaces","{{WORKSPACE_ID}}","state-versions"]}}},
+    {"name":"TFE: Soft Delete Backing Data","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/vnd.api+json"}],"body":{"mode":"raw","raw":"{\n  \"data\": {\n    \"attributes\": {\n      \"delete-older-than-n-days\": 23\n    }\n  }\n}\n"},"url":{"raw":"https://{{BASE_URL}}/api/v2/state-versions/{{STATE_VERSION_ID}}/actions/soft_delete_backing_data","host":["{{BASE_URL}}"],"path":["api","v2","state-versions","{{STATE_VERSION_ID}}","actions","soft_delete_backing_data"]}}},
+    {"name":"TFE: Restore Backing Data","request":{"method":"POST","url":{"raw":"https://{{BASE_URL}}/api/v2/state-versions/{{STATE_VERSION_ID}}/actions/restore_backing_data","host":["{{BASE_URL}}"],"path":["api","v2","state-versions","{{STATE_VERSION_ID}}","actions","restore_backing_data"]}}},
+    {"name":"TFE: Permanently Delete Backing Data","request":{"method":"POST","url":{"raw":"https://{{BASE_URL}}/api/v2/state-versions/{{STATE_VERSION_ID}}/actions/permanently_delete_backing_data","host":["{{BASE_URL}}"],"path":["api","v2","state-versions","{{STATE_VERSION_ID}}","actions","permanently_delete_backing_data"]}}}
+  ]
+}

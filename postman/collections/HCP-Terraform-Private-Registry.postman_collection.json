@@ -1,0 +1,19 @@
+{
+  "info": {"name": "HCP Terraform - Private Registry", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Private Registry Modules API endpoints and upload flow"},
+  "variable": [
+    {"key":"BASE_URL","value":"{{BASE_URL}}"},
+    {"key":"ORG_NAME","value":"{{ORG_NAME}}"},
+    {"key":"REGISTRY_NAMESPACE","value":"{{REGISTRY_NAMESPACE}}"},
+    {"key":"MODULE_NAME","value":"{{MODULE_NAME}}"},
+    {"key":"MODULE_PROVIDER","value":"{{MODULE_PROVIDER}}"},
+    {"key":"UPLOAD_URL","value":"{{UPLOAD_URL}}"}
+  ],
+  "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
+  "item": [
+    {"name":"List Registry Modules","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/registry-modules","host":["{{BASE_URL}}"],"path":["api","v2","organizations","{{ORG_NAME}}","registry-modules"]}}},
+    {"name":"Create Module (no VCS)","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/vnd.api+json"}],"body":{"mode":"raw","raw":"{\n  \"data\": {\n    \"type\": \"registry-modules\",\n    \"attributes\": {\n      \"name\": \"{{MODULE_NAME}}\",\n      \"provider\": \"{{MODULE_PROVIDER}}\",\n      \"registry-name\": \"private\"\n    }\n  }\n}"},"url":{"raw":"https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/registry-modules","host":["{{BASE_URL}}"],"path":["api","v2","organizations","{{ORG_NAME}}","registry-modules"]}}},
+    {"name":"Create Module Version (get upload URL)","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/vnd.api+json"}],"body":{"mode":"raw","raw":"{\n  \"data\": {\n    \"type\": \"registry-module-versions\",\n    \"attributes\": {\n      \"version\": \"1.0.0\"\n    }\n  }\n}"},"url":{"raw":"https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/registry-modules/private/{{REGISTRY_NAMESPACE}}/{{MODULE_NAME}}/{{MODULE_PROVIDER}}/versions","host":["{{BASE_URL}}"],"path":["api","v2","organizations","{{ORG_NAME}}","registry-modules","private","{{REGISTRY_NAMESPACE}}","{{MODULE_NAME}}","{{MODULE_PROVIDER}}","versions"]}}},
+    {"name":"Upload Module Tarball to Archivist","request":{"method":"PUT","header":[{"key":"Content-Type","value":"application/octet-stream"}],"body":{"mode":"file","file":{"src":"module.tar.gz"}},"url":{"raw":"{{UPLOAD_URL}}","host":["{{UPLOAD_URL}}"]}}},
+    {"name":"Get Module (private)","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/registry-modules/private/{{REGISTRY_NAMESPACE}}/{{MODULE_NAME}}/{{MODULE_PROVIDER}}","host":["{{BASE_URL}}"],"path":["api","v2","organizations","{{ORG_NAME}}","registry-modules","private","{{REGISTRY_NAMESPACE}}","{{MODULE_NAME}}","{{MODULE_PROVIDER}}"]}}}
+  ]
+}

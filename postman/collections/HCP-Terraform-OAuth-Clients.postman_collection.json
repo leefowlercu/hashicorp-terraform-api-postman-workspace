@@ -1,0 +1,20 @@
+{
+  "info": {"name": "HCP Terraform - OAuth Clients", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "OAuth Clients API endpoints"},
+  "variable": [
+    {"key":"BASE_URL","value":"{{BASE_URL}}"},
+    {"key":"ORG_NAME","value":"{{ORG_NAME}}"},
+  {"key":"OAUTH_CLIENT_ID","value":"{{OAUTH_CLIENT_ID}}"},
+  {"key":"PROJECT_ID","value":"{{PROJECT_ID}}"}
+  ],
+  "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
+  "item": [
+    {"name":"List OAuth Clients","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/oauth-clients","host":["{{BASE_URL}}"],"path":["api","v2","organizations","{{ORG_NAME}}","oauth-clients"]}}},
+    {"name":"Show OAuth Client","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/oauth-clients/{{OAUTH_CLIENT_ID}}","host":["{{BASE_URL}}"],"path":["api","v2","oauth-clients","{{OAUTH_CLIENT_ID}}"]}}},
+    {"name":"Create OAuth Client","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/vnd.api+json"}],"body":{"mode":"raw","raw":"{\n  \"data\": {\n    \"type\": \"oauth-clients\",\n    \"attributes\": {\n      \"service-provider\": \"github\",\n      \"http-url\": \"https://github.com\",\n      \"api-url\": \"https://api.github.com\",\n      \"oauth-token-string\": \"<token>\",\n      \"organization-scoped\": true\n    }\n  }\n}"},"url":{"raw":"https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/oauth-clients","host":["{{BASE_URL}}"],"path":["api","v2","organizations","{{ORG_NAME}}","oauth-clients"]}}},
+    {"name":"Update OAuth Client","request":{"method":"PATCH","header":[{"key":"Content-Type","value":"application/vnd.api+json"}],"body":{"mode":"raw","raw":"{\n  \"data\": {\n    \"id\": \"{{OAUTH_CLIENT_ID}}\",\n    \"type\": \"oauth-clients\",\n    \"attributes\": {\n      \"organization-scoped\": false\n    }\n  }\n}"},"url":{"raw":"https://{{BASE_URL}}/api/v2/oauth-clients/{{OAUTH_CLIENT_ID}}","host":["{{BASE_URL}}"],"path":["api","v2","oauth-clients","{{OAUTH_CLIENT_ID}}"]}}},
+  {"name":"Destroy OAuth Client","request":{"method":"DELETE","url":{"raw":"https://{{BASE_URL}}/api/v2/oauth-clients/{{OAUTH_CLIENT_ID}}","host":["{{BASE_URL}}"],"path":["api","v2","oauth-clients","{{OAUTH_CLIENT_ID}}"]}}},
+  {"name":"Attach OAuth Client to Projects","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/vnd.api+json"}],"body":{"mode":"raw","raw":"{\n  \"data\": [\n    { \"id\": \"{{PROJECT_ID}}\", \"type\": \"projects\" }\n  ]\n}\n"},"url":{"raw":"https://{{BASE_URL}}/api/v2/oauth-clients/{{OAUTH_CLIENT_ID}}/relationships/projects","host":["{{BASE_URL}}"],"path":["api","v2","oauth-clients","{{OAUTH_CLIENT_ID}}","relationships","projects"]}}},
+  {"name":"Detach OAuth Client from Projects","request":{"method":"DELETE","header":[{"key":"Content-Type","value":"application/vnd.api+json"}],"body":{"mode":"raw","raw":"{\n  \"data\": [\n    { \"id\": \"{{PROJECT_ID}}\", \"type\": \"projects\" }\n  ]\n}\n"},"url":{"raw":"https://{{BASE_URL}}/api/v2/oauth-clients/{{OAUTH_CLIENT_ID}}/relationships/projects","host":["{{BASE_URL}}"],"path":["api","v2","oauth-clients","{{OAUTH_CLIENT_ID}}","relationships","projects"]}}},
+  {"name":"List OAuth Tokens (by Client)","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/oauth-clients/{{OAUTH_CLIENT_ID}}/oauth-tokens?page[number]=1&page[size]=20","host":["{{BASE_URL}}"],"path":["api","v2","oauth-clients","{{OAUTH_CLIENT_ID}}","oauth-tokens"],"query":[{"key":"page[number]","value":"1"},{"key":"page[size]","value":"20"}]}}}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "info": {"name": "HCP Terraform - Agents", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Agent Pools and Agents API endpoints"},
+  "variable": [
+    {"key":"BASE_URL","value":"{{BASE_URL}}"},
+    {"key":"ORG_NAME","value":"{{ORG_NAME}}"},
+    {"key":"AGENT_POOL_ID","value":"{{AGENT_POOL_ID}}"}
+  ],
+  "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
+  "item": [
+    {"name":"List Agent Pools","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/agent-pools","host":["{{BASE_URL}}"],"path":["api","v2","organizations","{{ORG_NAME}}","agent-pools"]}}},
+    {"name":"Show Agent Pool","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/agent-pools/{{AGENT_POOL_ID}}","host":["{{BASE_URL}}"],"path":["api","v2","agent-pools","{{AGENT_POOL_ID}}"]}}},
+    {"name":"List Agents in Pool","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/agent-pools/{{AGENT_POOL_ID}}/agents","host":["{{BASE_URL}}"],"path":["api","v2","agent-pools","{{AGENT_POOL_ID}}","agents"]}}}
+  ]
+}

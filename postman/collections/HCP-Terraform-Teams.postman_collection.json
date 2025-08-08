@@ -1,0 +1,34 @@
+{
+  "info": {"name": "HCP Terraform - Teams", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Teams, Team Access, Team Tokens"},
+  "variable": [
+    {"key":"BASE_URL","value":"{{BASE_URL}}"},
+    {"key":"ORG_NAME","value":"{{ORG_NAME}}"},
+    {"key":"TEAM_ID","value":"{{TEAM_ID}}"},
+    {"key":"TEAM_WORKSPACE_ID","value":"{{TEAM_WORKSPACE_ID}}"},
+    {"key":"TOKEN_ID","value":"{{TOKEN_ID}}"}
+  ],
+  "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
+  "item": [
+    {"name":"Teams","item":[
+      {"name":"List Teams","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/teams?page[number]=1&page[size]=20","host":["{{BASE_URL}}"],"path":["api","v2","organizations","{{ORG_NAME}}","teams"],"query":[{"key":"page[number]","value":"1"},{"key":"page[size]","value":"20"}]}}},
+      {"name":"Create Team","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/vnd.api+json"}],"body":{"mode":"raw","raw":"{\n  \"data\": {\n    \"type\": \"teams\",\n    \"attributes\": {\n      \"name\": \"example-team\",\n      \"organization-access\": {\n        \"manage-workspaces\": true\n      },\n      \"visibility\": \"secret\"\n    }\n  }\n}"},"url":{"raw":"https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/teams","host":["{{BASE_URL}}"],"path":["api","v2","organizations","{{ORG_NAME}}","teams"]}}},
+      {"name":"Show Team","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/teams/{{TEAM_ID}}","host":["{{BASE_URL}}"],"path":["api","v2","teams","{{TEAM_ID}}"]}}},
+      {"name":"Update Team","request":{"method":"PATCH","header":[{"key":"Content-Type","value":"application/vnd.api+json"}],"body":{"mode":"raw","raw":"{\n  \"data\": {\n    \"type\": \"teams\",\n    \"attributes\": {\n      \"visibility\": \"organization\",\n      \"allow-member-token-management\": true,\n      \"organization-access\": {\n        \"manage-vcs-settings\": true\n      }\n    }\n  }\n}"},"url":{"raw":"https://{{BASE_URL}}/api/v2/teams/{{TEAM_ID}}","host":["{{BASE_URL}}"],"path":["api","v2","teams","{{TEAM_ID}}"]}}},
+      {"name":"Delete Team","request":{"method":"DELETE","url":{"raw":"https://{{BASE_URL}}/api/v2/teams/{{TEAM_ID}}","host":["{{BASE_URL}}"],"path":["api","v2","teams","{{TEAM_ID}}"]}}}
+    ]},
+    {"name":"Team Memberships","item":[
+      {"name":"Add Users to Team (by user IDs)","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/vnd.api+json"}],"body":{"mode":"raw","raw":"{\n  \"data\": [\n    { \"type\": \"users\", \"id\": \"{{USER_ID}}\" }\n  ]\n}\n"},"url":{"raw":"https://{{BASE_URL}}/api/v2/teams/{{TEAM_ID}}/relationships/users","host":["{{BASE_URL}}"],"path":["api","v2","teams","{{TEAM_ID}}","relationships","users"]}}},
+      {"name":"Remove Users from Team (by user IDs)","request":{"method":"DELETE","header":[{"key":"Content-Type","value":"application/vnd.api+json"}],"body":{"mode":"raw","raw":"{\n  \"data\": [\n    { \"type\": \"users\", \"id\": \"{{USER_ID}}\" }\n  ]\n}\n"},"url":{"raw":"https://{{BASE_URL}}/api/v2/teams/{{TEAM_ID}}/relationships/users","host":["{{BASE_URL}}"],"path":["api","v2","teams","{{TEAM_ID}}","relationships","users"]}}},
+      {"name":"Add Users to Team (by org membership IDs)","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/vnd.api+json"}],"body":{"mode":"raw","raw":"{\n  \"data\": [\n    { \"type\": \"organization-memberships\", \"id\": \"{{ORG_MEMBERSHIP_ID}}\" }\n  ]\n}\n"},"url":{"raw":"https://{{BASE_URL}}/api/v2/teams/{{TEAM_ID}}/relationships/organization-memberships","host":["{{BASE_URL}}"],"path":["api","v2","teams","{{TEAM_ID}}","relationships","organization-memberships"]}}},
+      {"name":"Remove Users from Team (by org membership IDs)","request":{"method":"DELETE","header":[{"key":"Content-Type","value":"application/vnd.api+json"}],"body":{"mode":"raw","raw":"{\n  \"data\": [\n    { \"type\": \"organization-memberships\", \"id\": \"{{ORG_MEMBERSHIP_ID}}\" }\n  ]\n}\n"},"url":{"raw":"https://{{BASE_URL}}/api/v2/teams/{{TEAM_ID}}/relationships/organization-memberships","host":["{{BASE_URL}}"],"path":["api","v2","teams","{{TEAM_ID}}","relationships","organization-memberships"]}}}
+    ]},
+    {"name":"Team Tokens","item":[
+      {"name":"Generate Team Token (modern)","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/vnd.api+json"}],"body":{"mode":"raw","raw":"{\n  \"data\": {\n    \"type\": \"authentication-tokens\",\n    \"attributes\": {\n      \"description\": \"Team API token\",\n      \"expired-at\": null\n    }\n  }\n}\n"},"url":{"raw":"https://{{BASE_URL}}/api/v2/teams/{{TEAM_ID}}/authentication-tokens","host":["{{BASE_URL}}"],"path":["api","v2","teams","{{TEAM_ID}}","authentication-tokens"]}}},
+      {"name":"Delete Team Token (by token ID)","request":{"method":"DELETE","url":{"raw":"https://{{BASE_URL}}/api/v2/authentication-tokens/{{TOKEN_ID}}","host":["{{BASE_URL}}"],"path":["api","v2","authentication-tokens","{{TOKEN_ID}}"]}}},
+      {"name":"List Team Tokens (org)","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/team-tokens?page[number]=1&page[size]=20","host":["{{BASE_URL}}"],"path":["api","v2","organizations","{{ORG_NAME}}","team-tokens"],"query":[{"key":"page[number]","value":"1"},{"key":"page[size]","value":"20"}]}}},
+      {"name":"Show Team Token (by token ID)","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/authentication-tokens/{{TOKEN_ID}}","host":["{{BASE_URL}}"],"path":["api","v2","authentication-tokens","{{TOKEN_ID}}"]}}},
+      {"name":"Generate Team Token (legacy single)","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/vnd.api+json"}],"body":{"mode":"raw","raw":"{\n  \"data\": {\n    \"type\": \"authentication-token\",\n    \"attributes\": {\n      \"expired-at\": null\n    }\n  }\n}\n"},"url":{"raw":"https://{{BASE_URL}}/api/v2/teams/{{TEAM_ID}}/authentication-token","host":["{{BASE_URL}}"],"path":["api","v2","teams","{{TEAM_ID}}","authentication-token"]}}},
+      {"name":"Delete Team Token (legacy single)","request":{"method":"DELETE","url":{"raw":"https://{{BASE_URL}}/api/v2/teams/{{TEAM_ID}}/authentication-token","host":["{{BASE_URL}}"],"path":["api","v2","teams","{{TEAM_ID}}","authentication-token"]}}}
+    ]}
+  ]
+}

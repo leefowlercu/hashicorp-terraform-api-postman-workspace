@@ -1,0 +1,23 @@
+{
+  "info": {"name": "HCP Terraform - Configuration Versions", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Configuration Versions endpoints and Archivist upload"},
+  "variable": [
+    {"key":"BASE_URL","value":"{{BASE_URL}}"},
+    {"key":"WORKSPACE_ID","value":"{{WORKSPACE_ID}}"},
+    {"key":"CONFIG_VERSION_ID","value":"{{CONFIG_VERSION_ID}}"},
+    {"key":"RUN_ID","value":"{{RUN_ID}}"},
+    {"key":"UPLOAD_URL","value":"{{UPLOAD_URL}}"}
+  ],
+  "auth": {"type":"bearer","bearer":[{"key":"token","value":"{{API_TOKEN}}","type":"string"}]},
+  "item": [
+    {"name":"List Config Versions (Workspace)","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/workspaces/{{WORKSPACE_ID}}/configuration-versions","host":["{{BASE_URL}}"],"path":["api","v2","workspaces","{{WORKSPACE_ID}}","configuration-versions"]}}},
+    {"name":"Show Config Version","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/configuration-versions/{{CONFIG_VERSION_ID}}","host":["{{BASE_URL}}"],"path":["api","v2","configuration-versions","{{CONFIG_VERSION_ID}}"]}}},
+    {"name":"Create Config Version (get upload URL)","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/vnd.api+json"}],"body":{"mode":"raw","raw":"{\n  \"data\": {\n    \"type\": \"configuration-versions\",\n    \"attributes\": {\n      \"auto-queue-runs\": true,\n      \"provisional\": false,\n      \"speculative\": false\n    }\n  }\n}\n"},"url":{"raw":"https://{{BASE_URL}}/api/v2/workspaces/{{WORKSPACE_ID}}/configuration-versions","host":["{{BASE_URL}}"],"path":["api","v2","workspaces","{{WORKSPACE_ID}}","configuration-versions"]}}},
+    {"name":"Upload Config Tarball to Archivist","request":{"method":"PUT","header":[{"key":"Content-Type","value":"application/octet-stream"}],"body":{"mode":"file","file":{"src":"configuration.tar.gz"}},"url":{"raw":"{{UPLOAD_URL}}","host":["{{UPLOAD_URL}}"]}}},
+    {"name":"Archive Config Version","request":{"method":"POST","url":{"raw":"https://{{BASE_URL}}/api/v2/configuration-versions/{{CONFIG_VERSION_ID}}/actions/archive","host":["{{BASE_URL}}"],"path":["api","v2","configuration-versions","{{CONFIG_VERSION_ID}}","actions","archive"]}}},
+    {"name":"Download Config (by ID)","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/configuration-versions/{{CONFIG_VERSION_ID}}/download","host":["{{BASE_URL}}"],"path":["api","v2","configuration-versions","{{CONFIG_VERSION_ID}}","download"]}}},
+    {"name":"Download Config (by Run)","request":{"method":"GET","url":{"raw":"https://{{BASE_URL}}/api/v2/runs/{{RUN_ID}}/configuration-version/download","host":["{{BASE_URL}}"],"path":["api","v2","runs","{{RUN_ID}}","configuration-version","download"]}}},
+    {"name":"TFE: Soft Delete Backing Data","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/vnd.api+json"}],"body":{"mode":"raw","raw":"{\n  \"data\": {\n    \"attributes\": {\n      \"delete-older-than-n-days\": 23\n    }\n  }\n}\n"},"url":{"raw":"https://{{BASE_URL}}/api/v2/configuration-versions/{{CONFIG_VERSION_ID}}/actions/soft_delete_backing_data","host":["{{BASE_URL}}"],"path":["api","v2","configuration-versions","{{CONFIG_VERSION_ID}}","actions","soft_delete_backing_data"]}}},
+    {"name":"TFE: Restore Backing Data","request":{"method":"POST","url":{"raw":"https://{{BASE_URL}}/api/v2/configuration-versions/{{CONFIG_VERSION_ID}}/actions/restore_backing_data","host":["{{BASE_URL}}"],"path":["api","v2","configuration-versions","{{CONFIG_VERSION_ID}}","actions","restore_backing_data"]}}},
+    {"name":"TFE: Permanently Delete Backing Data","request":{"method":"POST","url":{"raw":"https://{{BASE_URL}}/api/v2/configuration-versions/{{CONFIG_VERSION_ID}}/actions/permanently_delete_backing_data","host":["{{BASE_URL}}"],"path":["api","v2","configuration-versions","{{CONFIG_VERSION_ID}}","actions","permanently_delete_backing_data"]}}}
+  ]
+}

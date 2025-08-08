@@ -1,63 +1,110 @@
 # HCP Terraform / Terraform Enterprise API Postman Workspace
 
-This repo contains an importable Postman collection and environment for the full HCP Terraform / Terraform Enterprise API v2 plus Private Registry endpoints.
+This repo now provides a modular set of Postman collections grouped by API metaphors (matching the official docs), plus a shared environment.
 
 ## Import
 
+Option A — import the folder (recommended):
 1. In Postman, click Import.
-2. Select `postman/collections/HCP-Terraform-API.postman_collection.json` and `postman/environments/hcp-terraform.postman_environment.json`.
-3. Select the environment after import.
+2. Drag-and-drop the `postman/collections/` folder and `postman/environments/hcp-terraform.postman_environment.json`.
+3. Select the `hcp-terraform` environment after import.
+
+Option B — import individual collections: Import one or more JSON files from `postman/collections/` alongside the shared environment.
 
 ## Configure
 
-- In the environment, set:
-  - baseUrl: https://app.terraform.io (or your TFE hostname)
-  - apiToken: your user/team/org token
-  - orgName, orgId
-  - workspaceId, workspaceName
-  - projectId
-  - teamId, teamWorkspaceId
-  - tokenId (for team tokens)
-  - oauthClientId, agentPoolId, sshKeyId
-  - policySetId, uploadUrl (set dynamically from create-version responses)
-  - registryNamespace, moduleName, moduleProvider
+Enter values for the following Variables in Postman Environment:
+
+- BASE_URL: app.terraform.io (no protocol) or your TFE hostname
+- API_TOKEN: your user/team/org token
+- ORG_NAME, ORG_ID
+- WORKSPACE_ID, WORKSPACE_NAME
+- PROJECT_ID
+- TEAM_ID, TEAM_WORKSPACE_ID
+- TOKEN_ID (for team tokens)
+- OAUTH_CLIENT_ID, OAUTH_TOKEN_ID, AGENT_POOL_ID, SSH_KEY_ID
+- POLICY_SET_ID
+- REGISTRY_NAMESPACE, MODULE_NAME, MODULE_PROVIDER
+- UPLOAD_URL (set dynamically from create-version responses)
+- VARIABLE_ID, VARSET_ID, VAR_ID, USER_ID, ORG_MEMBERSHIP_ID
+- CONFIG_VERSION_ID, RUN_ID, PLAN_ID, APPLY_ID, STATE_VERSION_ID
+
+Notes:
+- The collection explicitly uses https://{{BASE_URL}} in request URLs. Keep BASE_URL as a hostname only.
+- Pre-signed uploads use {{UPLOAD_URL}} and remain fully qualified; do not prefix with BASE_URL.
 
 ## Auth
-## Coverage
 
-- Organizations, Teams, Team Access, Team Tokens (modern + legacy)
-- Projects, Workspaces (locks, delete, SSH keys, tags, state consumers)
-- OAuth Clients, Agents/Agent Pools/Agents
-- Policy Sets (upload via Archivist), Private Registry Modules (upload via Archivist)
-- Workspace Variables (list/create/update/delete)
-- Variable Sets (org/project/workspace lists; create/show/update/delete; manage vars/workspaces/projects)
-- Configuration Versions (list/show/create upload-url/upload/archive/download; TFE GC actions)
-- Runs (create/list/show; actions: apply/discard/cancel/force-cancel/force-execute)
-- Plans (show; JSON output; sanitized plan)
-- Applies (show; errored-state redirect)
-- State Versions (list/filter/show/current/create/upload/rollback; TFE GC actions)
+- Collection-level Bearer Token auth uses {{API_TOKEN}} from the environment.
 
-  - POST /runs
-  - POST /workspaces/:id/configuration-versions
-- Workspace Data Retention Policy endpoints are Terraform Enterprise-only.
-### Pagination and include examples
-- Uploads/flows: `{{uploadUrl}}`
-- Variables/Varsets: `{{variableId}}`, `{{varsetId}}`, `{{varId}}`
-- Run workflow: `{{configVersionId}}`, `{{runId}}`, `{{planId}}`, `{{applyId}}`
-- State: `{{stateVersionId}}`
+## Collections
 
-- Team Tokens (modern multi-token + legacy single-token)
-- Projects (list/create/show/update/delete; tag-bindings; move workspaces)
-- Workspaces (list/show/create/update; safe/force delete; lock/unlock/force-unlock; SSH key assign/unassign; remote state consumers; flat tags; tag-bindings)
-- OAuth Clients
-- Agents and Agent Pools
-- Policy Sets and Policy Set Versions (upload flow)
-- Private Registry Modules (list/create/versions/upload/get)
+The collections mirror the Terraform Cloud API documentation structure: https://developer.hashicorp.com/terraform/cloud-docs/api-docs
 
-Planned next:
-- Users, Team Memberships, Project Team Access
-- Variables, Variable Sets
-- Runs, Plans, Applies, Config Versions, State Versions, Outputs
-- Run Tasks, Cost Estimates, Notifications, Explorer, Billing/Invoices
+- HCP Terraform - Organizations (`postman/collections/HCP-Terraform-Organizations.postman_collection.json`)
+	- Organizations and Entitlement Set; Terraform Enterprise-only: Data Retention Policy (show/create/update/delete) and Module Producers
 
-Contributions welcome.
+- HCP Terraform - Teams (`postman/collections/HCP-Terraform-Teams.postman_collection.json`)
+	- Teams, Team Tokens (modern + legacy); Team Memberships (add/remove users and org-memberships)
+
+- HCP Terraform - Projects (`postman/collections/HCP-Terraform-Projects.postman_collection.json`)
+	- Projects, Tag Bindings, Effective Tag Bindings, Move Workspaces
+
+- HCP Terraform - Workspaces (`postman/collections/HCP-Terraform-Workspaces.postman_collection.json`)
+	- Folders: Workspaces; Workspace Variables; Workspace Team Access; Workspace Resources (SSH key, tags, remote state consumers); Terraform Enterprise-only: Workspace Data Retention Policy (show/create/update/delete)
+
+- HCP Terraform - OAuth Clients (`postman/collections/HCP-Terraform-OAuth-Clients.postman_collection.json`)
+	- OAuth Clients CRUD; attach/detach Projects; list OAuth Tokens by Client
+
+- HCP Terraform - OAuth Tokens (`postman/collections/HCP-Terraform-OAuth-Tokens.postman_collection.json`)
+	- List (by client), Show, Update (SSH key), Delete
+
+- HCP Terraform - Users (`postman/collections/HCP-Terraform-Users.postman_collection.json`)
+	- Show User
+
+- HCP Terraform - Agents (`postman/collections/HCP-Terraform-Agents.postman_collection.json`)
+	- Agent Pools, Agents in Pool
+
+- HCP Terraform - Policy Sets (`postman/collections/HCP-Terraform-Policy-Sets.postman_collection.json`)
+	- Create/Show/List; Create Version → Upload to Archivist
+
+- HCP Terraform - Private Registry (`postman/collections/HCP-Terraform-Private-Registry.postman_collection.json`)
+	- Modules (list/create/show); Create Version → Upload to Archivist
+
+- HCP Terraform - Variable Sets (`postman/collections/HCP-Terraform-Variable-Sets.postman_collection.json`)
+	- Org/Project/Workspace lists; create/show/update/delete; manage vars/workspaces/projects
+
+- HCP Terraform - Configuration Versions (`postman/collections/HCP-Terraform-Configuration-Versions.postman_collection.json`)
+	- List/Show/Create (upload URL) → Upload to Archivist; archive/download; TFE GC actions
+
+- HCP Terraform - Runs, Plans, Applies (`postman/collections/HCP-Terraform-Runs-Plans-Applies.postman_collection.json`)
+	- Runs (create/list/show; actions: apply/discard/cancel/force-cancel/force-execute)
+	- Plans (show; JSON output; sanitized plan)
+	- Applies (show; errored-state redirect)
+
+- HCP Terraform - State Versions (`postman/collections/HCP-Terraform-State-Versions.postman_collection.json`)
+	- List/filter/show/current/create/upload/rollback; TFE GC actions
+
+Legacy (all-in-one): If present, `postman/collections/HCP-Terraform-API.postman_collection.json` remains for convenience; prefer the modular collections above.
+
+### Common Flows
+
+- Create Config Version → Upload to Archivist (UPLOAD_URL) → Create Run → Apply
+- Create Policy Set Version → Upload to Archivist (UPLOAD_URL)
+- Create Module Version → Upload to Archivist (UPLOAD_URL)
+
+### Pagination
+
+- Query params like page[number], page[size] are included in many list endpoints.
+- include=current_version example included for Policy Sets.
+
+### Variable Reference Examples
+
+- URLs: https://{{BASE_URL}}/api/v2/...
+- Org/workspace: {{ORG_NAME}}, {{WORKSPACE_ID}}, {{WORKSPACE_NAME}}
+- IDs: {{PROJECT_ID}}, {{TEAM_ID}}, {{TEAM_WORKSPACE_ID}}, {{TOKEN_ID}}, {{OAUTH_CLIENT_ID}}, {{AGENT_POOL_ID}}, {{SSH_KEY_ID}}, {{POLICY_SET_ID}}
+- Registry: {{REGISTRY_NAMESPACE}}, {{MODULE_NAME}}, {{MODULE_PROVIDER}}
+- Uploads: {{UPLOAD_URL}}
+- Variables/Varsets: {{VARIABLE_ID}}, {{VARSET_ID}}, {{VAR_ID}}
+- Run workflow: {{CONFIG_VERSION_ID}}, {{RUN_ID}}, {{PLAN_ID}}, {{APPLY_ID}}
+- State: {{STATE_VERSION_ID}}

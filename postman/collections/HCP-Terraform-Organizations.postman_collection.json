@@ -1,0 +1,28 @@
+{
+  "info": {
+    "name": "HCP Terraform - Organizations",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Organizations API endpoints"
+  },
+  "variable": [
+    { "key": "BASE_URL", "value": "{{BASE_URL}}" },
+    { "key": "ORG_NAME", "value": "{{ORG_NAME}}" }
+  ],
+  "auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{API_TOKEN}}", "type": "string" } ] },
+  "item": [
+    { "name": "List Organizations", "request": { "method": "GET", "url": { "raw": "https://{{BASE_URL}}/api/v2/organizations?page[number]=1&page[size]=20", "host": ["{{BASE_URL}}"], "path": ["api","v2","organizations"], "query": [{"key":"page[number]","value":"1"},{"key":"page[size]","value":"20"}] } } },
+    { "name": "Show Organization", "request": { "method": "GET", "url": { "raw": "https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}", "host": ["{{BASE_URL}}"], "path": ["api","v2","organizations","{{ORG_NAME}}"] } } },
+    { "name": "Create Organization", "request": { "method": "POST", "header": [{"key":"Content-Type","value":"application/vnd.api+json"}], "body": { "mode": "raw", "raw": "{\n  \"data\": {\n    \"type\": \"organizations\",\n    \"attributes\": {\n      \"name\": \"example\",\n      \"email\": \"admin@example.com\"\n    }\n  }\n}" }, "url": { "raw": "https://{{BASE_URL}}/api/v2/organizations", "host": ["{{BASE_URL}}"], "path": ["api","v2","organizations"] } } },
+    { "name": "Update Organization", "request": { "method": "PATCH", "header": [{"key":"Content-Type","value":"application/vnd.api+json"}], "body": { "mode": "raw", "raw": "{\n  \"data\": {\n    \"type\": \"organizations\",\n    \"attributes\": {\n      \"email\": \"admin@example.com\"\n    }\n  }\n}" }, "url": { "raw": "https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}", "host": ["{{BASE_URL}}"], "path": ["api","v2","organizations","{{ORG_NAME}}"] } } },
+    { "name": "Destroy Organization", "request": { "method": "DELETE", "url": { "raw": "https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}", "host": ["{{BASE_URL}}"], "path": ["api","v2","organizations","{{ORG_NAME}}"] } } },
+    { "name": "Show Entitlement Set", "request": { "method": "GET", "url": { "raw": "https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/entitlement-set", "host": ["{{BASE_URL}}"], "path": ["api","v2","organizations","{{ORG_NAME}}","entitlement-set"] } } },
+    { "name": "Data Retention Policy (TFE)", "item": [
+      { "name": "Show Organization Data Retention Policy", "request": { "method": "GET", "url": { "raw": "https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/relationships/data-retention-policy", "host": ["{{BASE_URL}}"], "path": ["api","v2","organizations","{{ORG_NAME}}","relationships","data-retention-policy"] } } },
+      { "name": "Create/Update Organization Data Retention Policy", "request": { "method": "POST", "header": [ { "key": "Content-Type", "value": "application/vnd.api+json" } ], "body": { "mode": "raw", "raw": "{\n  \"data\": {\n    \"type\": \"data-retention-policy-delete-olders\",\n    \"attributes\": {\n      \"deleteOlderThanNDays\": 30\n    }\n  }\n}\n" }, "url": { "raw": "https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/relationships/data-retention-policy", "host": ["{{BASE_URL}}"], "path": ["api","v2","organizations","{{ORG_NAME}}","relationships","data-retention-policy"] } } },
+      { "name": "Remove Organization Data Retention Policy", "request": { "method": "DELETE", "url": { "raw": "https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/relationships/data-retention-policy", "host": ["{{BASE_URL}}"], "path": ["api","v2","organizations","{{ORG_NAME}}","relationships","data-retention-policy"] } } }
+    ] },
+    { "name": "Module Sharing (TFE)", "item": [
+      { "name": "Show Module Producers", "request": { "method": "GET", "url": { "raw": "https://{{BASE_URL}}/api/v2/organizations/{{ORG_NAME}}/relationships/module-producers?page[number]=1&page[size]=20", "host": ["{{BASE_URL}}"], "path": ["api","v2","organizations","{{ORG_NAME}}","relationships","module-producers"], "query": [ { "key": "page[number]", "value": "1" }, { "key": "page[size]", "value": "20" } ] } } }
+    ] }
+  ]
+}
